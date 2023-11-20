@@ -1,19 +1,44 @@
-import CurrentWeather from "./src/screens/CurrentWeather";
-import React from "react";
-import {View, StyleSheet} from 'react-native'
-import UpcomingWeather from "./src/screens/UpcomingWeather";
+import React, {useState, useEffect} from "react";
+import { ActivityIndicator, View, StyleSheet} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import Tabs from "./src/Components/Tabs";
+import * as Location from "expo-location"
 
 
-const App= () => {
-  return (
-      <View style = {styles.container}>
-          <UpcomingWeather/>
+const App = () => {
+  const [loading, setLoading] = useState(true)
+  const [location, setLocation] = useState(null)
+  const [error, setError] = useState(null)
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync()
+      if (status !== 'granted') {
+        setError('permission to access location denied')
+        return(console.log(error))
+      }
+      let location = await Location.getCurrentPositionAsync({})
+      setLocation(location)
+    }) ()
+  }, [])
+  if (location) {
+    return(console.log(location))
+  }
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size={'large'} color={'blue'} />
       </View>
+    )
+  }
+  return (
+    <NavigationContainer>
+      <Tabs/>
+    </NavigationContainer>
   )
 }
-
 const styles = StyleSheet.create({
   container: {
+    justifyContent: 'center',
     flex:1
   }
 })

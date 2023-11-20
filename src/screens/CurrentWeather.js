@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView } from "react-native";
 import { StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import RowText from "../Components/RowText";
+import { weatherType } from "../utilities/WeatherType";
 
 const CurrentWeather = () => {
   const {wrapper, container, temp, feels, highLow, highLowWrapper, bodyWrapper, description, message} = styles
@@ -16,7 +17,7 @@ const CurrentWeather = () => {
           messageTwoStyles={highLow} messageOne={"High: 8"} messageTwo={'Low: 6'} />
       </View>
       <RowText containerStyles={bodyWrapper} messageOneStyles={description}
-          messageTwoStyles={message} messageOne={"It's Sunny"} messageTwo={"It's perfect t-shirt weather"} />
+          messageTwoStyles={message} messageOne={"It's Sunny"} messageTwo={weatherType['Thunderstorm'].message} />
     </SafeAreaView>
   );
 };

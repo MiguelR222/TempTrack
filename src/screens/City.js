@@ -9,9 +9,9 @@ const City= () => {
         riseSetText, riseSetWrapper, rowLayout } = styles
     return(
         <SafeAreaView style= {container}>
-            <ImageBackground 
-            source={require('/assets/citypic.jpg')}
-            style= {imageLayout}>
+            {/* <ImageBackground 
+                source={require('/assets/citypic.jpg')}  */}
+            {/* style= {imageLayout}> */}
             <Text style= {[cityName, cityText]}>Chihuahua</Text>
             <Text style= {[countryName, cityText]}>Mexico</Text>
             <View style= {[populationWrapper, rowLayout]}>
@@ -21,7 +21,7 @@ const City= () => {
                 <IconText iconName='sunrise' iconColor='white' bodyText={'10:46:58 am'} bodyTextStyles= {riseSetText} />
                 <IconText iconName='sunset' iconColor='white' bodyText={'17:28:15 pm'} bodyTextStyles= {riseSetText} />
             </View>
-            </ImageBackground>
+            {/* </ImageBackground> */}
         </SafeAreaView>
     )
 
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 
     },
     imageLayout: {
-        flex:1
+        flex: 1,
     },
     cityName: {
         fontSize: 40,
