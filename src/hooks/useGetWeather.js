@@ -10,9 +10,9 @@ export const useGetWeather = () => {
     const [lat, setLat] = useState([])
     const [lon, setLon] = useState([])
   
-    const fetchWeatherData = async () => {
+    const fetchWeatherData = async (lat,lon) => {
       try {
-        const res = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${location.coords.latitude}&lon=${location.coords.longitude}&appid=${WEATHER_API_KEY}`)
+        const res = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`)
         const data = await res.json()
         setWeather(data)
       } catch (e) {
@@ -33,8 +33,8 @@ export const useGetWeather = () => {
         setLocation(location)
         setLat(location.coords.latitude)
         setLon(location.coords.longitude)
-        await fetchWeatherData()
+        await fetchWeatherData(location.coords.latitude, location.coords.longitude)
       })()
-    }, [lat, lon])
+    }, [])
     return [loading,error,weather]
 }

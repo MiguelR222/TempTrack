@@ -2,26 +2,27 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaView, Text, StyleSheet, ImageBackground, View} from "react-native";
 import IconText from "../Components/IconText";
+import moment from "moment";
 
-const City= () => {
+const City= ({weatherData}) => {
     const {container, imageLayout, cityName, countryName, 
         cityText, populationText, populationWrapper,
         riseSetText, riseSetWrapper, rowLayout } = styles
+    const {name, country, population, sunrise, sunset}= weatherData
     return(
         <SafeAreaView style= {container}>
-            {/* <ImageBackground 
-                source={require('/assets/citypic.jpg')}  */}
-            {/* style= {imageLayout}> */}
-            <Text style= {[cityName, cityText]}>Chihuahua</Text>
-            <Text style= {[countryName, cityText]}>Mexico</Text>
+            <ImageBackground 
+                source={require('../../assets/citypic.jpg')} style= {imageLayout}> 
+            <Text style= {[cityName, cityText]}>{name}</Text>
+            <Text style= {[countryName, cityText]}>{country}</Text>
             <View style= {[populationWrapper, rowLayout]}>
-                    <IconText iconName='user' iconColor='red' bodyText={'8000'} bodyTextStyles= {populationText} />
+                    <IconText iconName='user' iconColor='red' bodyText={`Population: ${population}`} bodyTextStyles= {populationText} />
             </View>
             <View style={[riseSetWrapper, rowLayout]}>
-                <IconText iconName='sunrise' iconColor='white' bodyText={'10:46:58 am'} bodyTextStyles= {riseSetText} />
-                <IconText iconName='sunset' iconColor='white' bodyText={'17:28:15 pm'} bodyTextStyles= {riseSetText} />
+                <IconText iconName={'sunrise'} iconColor={'white'} bodyText={moment(sunrise).format('h:mm:ss a')} bodyTextStyles= {riseSetText} />
+                <IconText iconName={'sunset'} iconColor={'white'} bodyText={moment(sunset).format('h:mm:ss a')} bodyTextStyles= {riseSetText} />
             </View>
-            {/* </ImageBackground> */}
+            </ImageBackground>
         </SafeAreaView>
     )
 
