@@ -19,16 +19,14 @@ const UpcomingWeather = ({weatherData}) => {
     />
   );
   const { container, image } = styles;
+  const limitedData = weatherData.slice(0, 24); 
   return (
     <SafeAreaView style={container}>
       <ImageBackground source={require("../../assets/clouds.jpg")} style={image}>
         <FlatList
-          data={weatherData}
+          data={limitedData} 
           renderItem={renderItem}
           keyExtractor={(item) => item.dt_txt}
-          ItemSeparatorComponent={() => (
-            <View style={{ backgroundColor: "red", height: 2 }} />
-          )}
         />
       </ImageBackground>
     </SafeAreaView>

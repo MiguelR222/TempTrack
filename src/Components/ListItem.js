@@ -21,14 +21,15 @@ const ListItem = (props) => {
 
 const styles = StyleSheet.create({
   item: {
-    padding: 20,
-    marginVertical: 8,
+    padding: 10,
+    marginVertical: 4,
     marginHorizontal: 16,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    borderWidth: 5,
+    borderWidth: 1,
     backgroundColor: "indianred",
+    borderRadius:20
   },
   temp: {
     color: "white",
@@ -39,7 +40,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   dateTextWrapper: {
-    flexDirection: 'column'
+    flexDirection: 'column',
+    alignSelf:'center'
   }
 });
 

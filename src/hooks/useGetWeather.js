@@ -23,7 +23,7 @@ export const useGetWeather = () => {
     }; 
   
     useEffect(() => {
-      ; (async () => {
+      (async () => {
         let { status } = await Location.requestForegroundPermissionsAsync()
         if (status !== 'granted') {
           setError('permission to access location denied')
@@ -33,8 +33,14 @@ export const useGetWeather = () => {
         setLocation(location)
         setLat(location.coords.latitude)
         setLon(location.coords.longitude)
-        await fetchWeatherData(location.coords.latitude, location.coords.longitude)
       })()
-    }, [])
+    }, []) 
+    
+    useEffect(() => {
+      if (lat && lon) {
+        fetchWeatherData(lat, lon)
+      }
+    }, [lat, lon]) 
+    
     return [loading,error,weather]
 }
